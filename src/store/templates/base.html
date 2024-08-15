@@ -37,6 +37,8 @@
 
     </head>
 	<body>
+		
+		
 		<!-- HEADER -->
 		<header>
 			<!-- TOP HEADER -->
@@ -49,7 +51,7 @@
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="{%url 'login'%}"><i class="fa fa-user-o"></i> My Account</a></li>
 					</ul>
 				</div>
 			</div>
@@ -165,7 +167,19 @@
 		</header>
 		<!-- /HEADER -->
 
-		{% include 'navbar.html'%} 
+		{% include 'navbar.html'%}
+		{% if messages %}
+
+		    {% for message in messages %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" style="opacity: 1;">
+				{{message}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			  </div>
+			{% endfor %}
+
+		{% endif %}
+		
+
         {% block content %}
         {% endblock %}
 
