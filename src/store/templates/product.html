@@ -126,8 +126,8 @@
 
 					<ul class="product-links">
 						<li>Category:</li>
-						<li><a href="#">Headphones</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="#">{{ product.category }}</a></li>
+						
 					</ul>
 
 					<ul class="product-links">
@@ -376,122 +376,55 @@
 				</div>
 			</div>
 
-			<!-- product -->
-			<div class="col-md-3 col-xs-6">
-				<div class="product">
-					<div class="product-img">
-						<img src="{{ product.image.url}}" alt="">
-						<div class="product-label">
-							<span class="sale">-30%</span>
+			<!-- RELATED product -->
+			<div class="row">
+				{% for related_product in related_products %}
+				<div class="col-md-3 col-xs-6">
+					<div class="product">
+						<div class="product-img">
+							<img src="{{ related_product.image.url }}" alt="{{ related_product.name }}">
+							<div class="product-label">
+								{% if related_product.is_sale %}
+								<span class="sale">-30%</span>
+								{% endif %}
+							</div>
 						</div>
-					</div>
-					<div class="product-body">
-						<p class="product-category">{{ product.category }}</p>
-						<h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
-						<h4 class="product-price">${{ product.price }}<del class="product-old-price">${{product.sale_price}}</del></h4>
-						<div class="product-rating">
+						<div class="product-body">
+							<p class="product-category">{{ related_product.category}}</p>
+							<h3 class="product-name"><a href="#">{{ related_product.name }}</a></h3>
+							<h4 class="product-price">${{ related_product.price }} 
+								<del class="product-old-price">${{ related_product.sale_price }}</del>
+							</h4>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star"></i>
+							    <i class="fa fa-star-o"></i>
+								<!-- Rating goes here -->
+							</div>
+							<div class="product-btns">
+								<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+								<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+								<button class="quick-view" onclick="window.location.href='{% url 'product' product.id %}';">
+									<i class="fa fa-eye"></i>
+									<span class="tooltipp">quick view</span>
+								</button>
+							</div>
 						</div>
-						<div class="product-btns">
-							<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-							<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-							<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 						</div>
-					</div>
-					<div class="add-to-cart">
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 					</div>
 				</div>
+				{% endfor %}
 			</div>
-			<!-- /product -->
+			<!--RELATED /product -->
 
-			<!-- product -->
-			<div class="col-md-3 col-xs-6">
-				<div class="product">
-					<div class="product-img">
-						<img src="{{ product.image.url}}"  alt="">
-						<div class="product-label">
-							<span class="new">NEW</span>
-						</div>
-					</div>
-					<div class="product-body">
-						<p class="product-category">Category</p>
-						<h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
-						<h4 class="product-price">${{ product.price }} <del class="product-old-price">${{product.sale_price}}</del></h4>
-						<div class="product-rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-						</div>
-						<div class="product-btns">
-							<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-							<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-							<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-						</div>
-					</div>
-					<div class="add-to-cart">
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-					</div>
-				</div>
-			</div>
-			<!-- /product -->
-
+			
 			<div class="clearfix visible-sm visible-xs"></div>
 
-			<!-- product -->
-			<div class="col-md-3 col-xs-6">
-				<div class="product">
-					<div class="product-img">
-						<img src="{{ product.image.url}}" alt="">
-					</div>
-					<div class="product-body">
-						<p class="product-category">{{ product.category }}</p>
-						<h3 class="product-name"><a href="#">{{ product.price }}</a></h3>
-						<h4 class="product-price">${{ product.price }} <del class="product-old-price">${{product.sale_price}}</del></h4>
-						<div class="product-rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star-o"></i>
-						</div>
-						<div class="product-btns">
-							<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-							<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-							<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-						</div>
-					</div>
-					<div class="add-to-cart">
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-					</div>
-				</div>
-			</div>
-			<!-- /product -->
-
-			<!-- product -->
-			<div class="col-md-3 col-xs-6">
-				<div class="product">
-					<div class="product-img">
-						<img src="{{ product.image.url}}"  alt="">
-					</div>
-					<div class="product-body">
-						<p class="product-category">${{product.category}}</p>
-						<h3 class="product-name"><a href="#">${{product.name}}</a></h3>
-						<h4 class="product-price">${{product.price}} <del class="product-old-price">${{product.sale_price}}</del></h4>
-						<div class="product-rating">
-						</div>
-						<div class="product-btns">
-							<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-							<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-							<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-						</div>
-					</div>
-					<div class="add-to-cart">
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-					</div>
-				</div>
-			</div>
+			
 			<!-- /product -->
 
 		</div>
