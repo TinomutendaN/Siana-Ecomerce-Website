@@ -707,6 +707,8 @@
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
+
+
 							<i class="fa fa-star-o"></i>
 						</div>
 						<div class="product-btns">
@@ -745,3 +747,63 @@
 					</div>
 				</div>
 			</div>
+
+
+
+            SEARCH 
+
+            <div class="col-md-6">
+                <div class="header-search">
+                    <form method="GET" action="">
+                        <select class="input-select" onchange="if(this.value != '0') { window.location.href = '/category/' + this.value.replace(/ /g, '-'); }">
+                            <option value="0">All Categories</option>
+                            {% for category in categories %}
+                                <option value="{{ category.name }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <input class="input" placeholder="Search here">
+                        <button class="search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+
+
+            THE CART THING
+
+            <div class="cart-list">
+                <div class="product-widget">
+                    <div class="product-img">
+                        <img src="{% static 'img/product01.png' %}" alt="">
+                    </div>
+                    <div class="product-body">
+
+                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                    </div>
+                    <button class="delete"><i class="fa fa-close"></i></button>
+                </div>
+
+                <div class="product-widget">
+                    <div class="product-img">
+                        <img src="{% static 'img/product02.png' %}" alt="">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                        <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                    </div>
+                    <button class="delete"><i class="fa fa-close"></i></button>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <small>3 Item(s) selected</small>
+                <h5>SUBTOTAL: $2940.00</h5>
+            </div>
+
+
+
+            add to Cart
+            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+
+
+
+            THE CALCULATIONS ON ADD TO CART

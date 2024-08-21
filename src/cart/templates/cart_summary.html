@@ -5,6 +5,239 @@
 {% block content%}
 
 
+<style>
+    /* Scoped CSS for this specific HTML */
+    /* Scoped CSS for this specific HTML */
+#cart-template {
+    background-color: #eeeeee;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+#cart-template .container {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+#cart-template .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px; /* Increased padding */
+}
+
+#cart-template .header h4 {
+    margin: 0;
+}
+
+#cart-template .header a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 25px; /* Increased margin */
+}
+
+#cart-template .cart-items {
+    margin-top: 30px; /* Increased margin */
+}
+
+#cart-template .cart-item-heading,
+#cart-template .cart-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto; /* Adjusted to ensure correct column distribution */
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding: 15px 0; /* Increased padding */
+    gap: 20px; /* Added gap for spacing between columns */
+}
+
+#cart-template .cart-item-heading {
+    font-weight: bold;
+    background-color: #f9f9f9;
+    margin-bottom: 15px; /* Increased margin */
+}
+
+#cart-template .cart-item-heading div {
+    text-align: center;
+    padding: 10px; /* Increased padding */
+}
+
+#cart-template .cart-item img {
+    width: 150px; /* Increased size */
+    height: 150px; /* Increased size */
+    object-fit: cover;
+}
+
+#cart-template .cart-item-details {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px; /* Increased padding */
+}
+
+#cart-template .cart-item-details h6 {
+    margin: 0;
+}
+
+#cart-template .cart-item-details div {
+    margin-bottom: 10px; /* Increased margin */
+}
+
+#cart-template .cart-item-actions {
+    display: flex;
+    flex-direction: column; /* Changed to column */
+    align-items: center;
+    padding-left: 20px; /* Increased padding */
+}
+
+#cart-template .cart-item-actions .price,
+#cart-template .cart-item-actions .total-price,
+#cart-template .cart-item-actions .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%; /* Ensure full width for alignment */
+}
+
+#cart-template .cart-item-actions .quantity-control {
+    margin: 0; /* Reset margin */
+}
+
+#cart-template .cart-item-actions .fa {
+    font-size: 30px; /* Increased icon size */
+    cursor: pointer;
+}
+
+#cart-template .cart-item-actions .fa-delete {
+    color: red;
+}
+
+#cart-template .cart-summary {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 2px solid #ddd;
+    padding-top: 15px; /* Increased padding */
+    margin-top: 30px; /* Increased margin */
+}
+
+#cart-template .cart-summary b {
+    font-size: 20px; /* Increased font size */
+}
+
+#cart-template .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px; /* Increased margin */
+}
+
+#cart-template .footer button {
+    padding: 15px 30px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cart-template .footer .go-back {
+    background-color: #ddd;
+    color: #333;
+}
+
+#cart-template .footer .checkout {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media(max-width: 767px) {
+    #cart-template .header a {
+        font-size: 14px; /* Adjusted font size */
+        margin-left: 15px; /* Adjusted margin */
+    }
+
+    #cart-template .cart-item img {
+        width: 80px; /* Adjusted size */
+        height: 80px; /* Adjusted size */
+    }
+
+    #cart-template .cart-summary b {
+        font-size: 16px; /* Adjusted font size */
+    }
+
+    #cart-template .footer button {
+        padding: 10px 20px; /* Adjusted padding */
+        font-size: 16px; /* Adjusted font size */
+    }
+}
+
+</style>
+</head>
+<body>
+    {% if cart %}
+    <div id="cart-template">
+        <div class="container">
+            <div class="header">
+                <h4>My Cart</h4>
+                <div>
+                    <a href="#">LOGIN</a>
+                    <a href="#">HELP</a>
+                </div>
+            </div>
+
+            <div class="cart-items">
+                <!-- Heading for the columns -->
+                <div class="cart-item-heading">
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total Price</div>
+                    <div>Actions</div>
+                </div>
+
+                <!-- Loop through cart items -->
+                {% for item in cart %}
+                <div class="cart-item">
+                    <div class="cart-item-details">
+                        <img src="{{ item.product.image.url }}" alt="Product Image">
+                        <div>
+                            <h6>{{ item.product.name }}</h6>
+                            <div>{{ item.product.category.name }}</div>
+                        </div>
+                    </div>
+                    <div class="price">${{ item.price }}</div>
+                    <div class="quantity-control">
+                        <span class="fa fa-minus-square"></span>
+                        <span class="px-2">{{ item.quantity }}</span>
+                        <span class="fa fa-plus-square"></span>
+                    </div>
+                    <div class="total-price">${{ item.total_price }}</div>
+                    <span class="fa fa-trash fa-delete"></span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="cart-summary">
+                <b>SUBTOTAL: ${{ total_price }}</b>
+            </div>
+
+            <div class="footer">
+                <button class="go-back">GO BACK</button>
+                <button class="checkout">CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+</body>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+
 {% endblock %}
+
+
+
 
 		

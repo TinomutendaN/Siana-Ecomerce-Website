@@ -116,7 +116,14 @@
 								<span class="qty-down">-</span>
 							</div>
 						</div>
-						<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+						<form action="{% url 'cart_add' %}" method="POST" style="display:inline;">
+							{% csrf_token %}
+							<input type="hidden" name="product_id" value="{{ product.id }}">
+							<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+						</form>
+						
+						
+						
 					</div>
 
 					<ul class="product-btns">
@@ -413,7 +420,12 @@
 							</div>
 						</div>
 						<div class="add-to-cart">
-							<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							<form action="{% url 'cart_add' %}" method="POST" style="display:inline;">
+								{% csrf_token %}
+								<input type="hidden" name="product_id" value="{{ product.id }}">
+								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							</form>
+							
 						</div>
 					</div>
 				</div>

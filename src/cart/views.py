@@ -1,13 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from .cart import Cart
+from store.models import Product
+from django.http import JsonResponse 
+
 
 # Create your views here.
 def cart_summary(request):
-    return render(request, "cart_summary.html",{})
+    cart = Cart(request)
+    total_price = cart.get_total_price()
+    total_quantity = cart.get_total_quantity()
+    return render(request, "cart_summary.html", {'cart': cart, 'total_price': total_price, 'total_quantity': total_quantity})
+
 
 
 
 def cart_add(request):
-    pass
+    cart = Cart(request)
+    product_id = request.POST.get('product_id')
+    product = get_object_or_404(Product, id=product_id)
+    cart.add(product=product)
+    
+    
+    
+    return redirect('cart_summary')
+
 
 
 def cart_delete(request):
