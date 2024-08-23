@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db import models
 from .models import Product, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
@@ -6,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django import forms 
+import random
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -58,16 +61,6 @@ def register_user(request):
             return render(request, 'register.html',{'form':form})
        
 
-#def product(request,pk):
-    #product = Product.objects.get(id=pk)
-    #return render(request, 'product.html',{'products':product})
-
-#def product(request, pk):
-    #try:
-        #product = Product.objects.get(id=pk)
-        #return render(request, 'product.html', {'product': product})
-    #except Product.DoesNotExist:
-        #return redirect('index')  # Redirect to the homepage or an error page if the product doesn't exist
 
 
 def product(request, pk):
@@ -78,19 +71,7 @@ def product(request, pk):
     except Product.DoesNotExist:
         return redirect('index')  # Redirect if the product doesn't exist
     
-#def category(request,foo):
-    # Replace Hyphens with Spaces
-    #foo = foo.replace('-', ' ')
-    # Grab the category from the url
-    #try:
-        # look up the category
-        #category = Category.objects.get(name=foo)
-        #products = Product.objects.filter(category=category)
-        #return render(request, 'category.html', {'products':products, 'category':category})
 
-
-    #except:
-        #return redirect('index')
 
 def category(request, foo):
     # Replace hyphens with spaces to match category names in the database
@@ -105,7 +86,35 @@ def category(request, foo):
     except Category.DoesNotExist:
         return redirect('index')  # Redirect to the homepage if the category doesn't exist
 
+def store(request, category_slug=None):
+    # Annotate categories with the count of products in each category
+    categories = Category.objects.annotate(product_count=models.Count('product'))
+    # Get all products
+    products = Product.objects.all()
 
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = products.filter(category=category)
+    
+    # Set up pagination: 12 products per page (or adjust to fit nicely on your page)
+    paginator = Paginator(products, 12)
+    page_number = request.GET.get('page')  # Get the page number from the query string
+    page_obj = paginator.get_page(page_number)  # Get the products for the current page
+    
+    # Fetch all products that are on sale
+    on_sale_products = Product.objects.filter(is_sale=True)
+    
+    # Randomly select up to 3 products that are on sale
+    top_selling_products = random.sample(list(on_sale_products), min(len(on_sale_products), 3))
+    
+    return render(request, 'store.html', {
+        'categories': categories,
+        'products': products,
+        'top_selling_products': top_selling_products,
+        'page_obj': page_obj,
+        'category': category if category_slug else None
+
+    })
 
 
 

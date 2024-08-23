@@ -1,0 +1,209 @@
+{% extends 'base.html'%}
+
+{% load static  %}
+
+{% block content%}
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">All Categories</a></li>
+							<li><a href="#">Accessories</a></li>
+							<li class="active">Headphones (227,490 Results)</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- ASIDE -->
+					<div id="aside" class="col-md-3">
+						<!-- aside Widget -->
+						<div class="aside">
+							<h3 class="aside-title">Categories</h3>
+							<div class="checkbox-filter">
+								{% for category in categories %}
+								<div class="input-checkbox">
+									<input type="checkbox" id="category-{{ category.id }}">
+									<label for="category-{{ category.id }}">
+										<span></span>
+										{{ category.name }}
+										<small>({{ category.product_count }})</small>
+									</label>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						<!-- /aside Widget -->
+
+						<!-- aside Widget -->
+						<div class="aside">
+							<h3 class="aside-title">Price</h3>
+							<div class="price-filter">
+								<div id="price-slider"></div>
+								<div class="input-number price-min">
+									<input id="price-min" type="number">
+									<span class="qty-up">+</span>
+									<span class="qty-down">-</span>
+								</div>
+								<span>-</span>
+								<div class="input-number price-max">
+									<input id="price-max" type="number">
+									<span class="qty-up">+</span>
+									<span class="qty-down">-</span>
+								</div>
+							</div>
+						</div>
+						<!-- /aside Widget -->
+						<!-- aside Widget -->
+						<div class="aside">
+							<h3 class="aside-title">SALE</h3>
+							{% for product in top_selling_products %}
+    <div class="product-widget">
+        <div class="product-img">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-body">
+            <p class="product-category">{{ product.category.name }}</p>
+            <h3 class="product-name">
+                <a href="{% url 'product' product.id %}">{{ product.name }}</a>
+            </h3>
+            <h4 class="product-price">
+                ${{ product.sale_price }} 
+                {% if product.sale_price < product.price %}
+                <del class="product-old-price">${{ product.price }}</del>
+                {% endif %}
+            </h4>
+        </div>
+    </div>
+    {% endfor %}
+							
+						</div>
+						<!-- /aside Widget -->
+					</div>
+					<!-- /ASIDE -->
+
+					<!-- STORE -->
+					<div id="store" class="col-md-9">
+						<!-- store top filter -->
+						<div class="store-filter clearfix">
+							<div class="store-sort">
+								<label>
+									Sort By:
+									<select class="input-select">
+										<option value="0">Popular</option>
+										<option value="1">Position</option>
+									</select>
+								</label>
+
+								<label>
+									Show:
+									<select class="input-select">
+										<option value="0">20</option>
+										<option value="1">50</option>
+									</select>
+								</label>
+							</div>
+							<ul class="store-grid">
+								<li class="active"><i class="fa fa-th"></i></li>
+								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
+							</ul>
+						</div>
+						<!-- /store top filter -->
+
+						<!-- store products -->
+						<div class="row">
+    {% for product in page_obj %}
+    <div class="col-md-4 col-xs-6">
+        <div class="product">
+            <div class="product-img">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="product-label">
+                    {% if product.is_sale %}
+                    <span class="sale">-{{ product.price|floatformat:0 }}%</span>
+                    {% endif %}
+                    {% if product.is_new %}
+                    <span class="new">NEW</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ product.category.name }}</p>
+                <h3 class="product-name"><a href="{% url 'product' product.id %}">{{ product.name }}</a></h3>
+                <h4 class="product-price">${{ product.price }} 
+                    {% if product.is_sale %}
+                    <del class="product-old-price">${{ product.sale_price }}</del>
+                    {% endif %}
+                </h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    {% if forloop.counter|divisibleby:"2" %}
+    <div class="clearfix visible-sm visible-xs"></div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:"3" %}
+    <div class="clearfix visible-md visible-lg"></div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+						<!-- /store products -->
+
+						<!-- store bottom filter -->
+						<div class="store-filter clearfix">
+							<span class="store-qty">Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} products</span>
+							<ul class="store-pagination">
+								{% if page_obj.has_previous %}
+								<li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+								{% endif %}
+								{% for num in page_obj.paginator.page_range %}
+								<li class="{% if page_obj.number == num %}active{% endif %}"><a href="?page={{ num }}">{{ num }}</a></li>
+								{% endfor %}
+								{% if page_obj.has_next %}
+								<li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+								{% endif %}
+							</ul>
+						</div>
+						<!-- /store bottom filter -->
+					</div>
+					<!-- /STORE -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		
+{% endblock %}

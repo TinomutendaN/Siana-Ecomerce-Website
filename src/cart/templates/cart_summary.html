@@ -210,12 +210,20 @@
                     </div>
                     <div class="price">${{ item.price }}</div>
                     <div class="quantity-control">
-                        <span class="fa fa-minus-square"></span>
-                        <span class="px-2">{{ item.quantity }}</span>
-                        <span class="fa fa-plus-square"></span>
+                        <form method="POST" action="{% url 'cart_update' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                            <button type="submit" name="action" value="decrease" class="fa fa-minus-square"></button>
+                            <span class="px-2">{{ item.quantity }}</span>
+                            <button type="submit" name="action" value="increase" class="fa fa-plus-square"></button>
+                        </form>
                     </div>
                     <div class="total-price">${{ item.total_price }}</div>
-                    <span class="fa fa-trash fa-delete"></span>
+                    <form method="POST" action="{% url 'cart_delete' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                        <button type="submit" class="fa fa-trash fa-delete"></button>
+                    </form>
                 </div>
                 {% endfor %}
             </div>
@@ -225,15 +233,15 @@
             </div>
 
             <div class="footer">
-                <button class="go-back">GO BACK</button>
-                <button class="checkout">CHECKOUT</button>
+                <a href="{% url 'index' %}" class="go-back primary-btn">GO BACK</a>
+                <a href="{% url 'checkout' %}" class="checkout primary-btn">CHECKOUT</a>
             </div>
         </div>
     </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
 </body>
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
 
 {% endblock %}
 

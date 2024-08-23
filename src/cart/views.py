@@ -26,10 +26,21 @@ def cart_add(request):
 
 
 
-def cart_delete(request):
-    pass
-
-
 def cart_update(request):
-    pass
+    cart = Cart(request)
+    product_id = request.POST.get('product_id')
+    action = request.POST.get('action')
 
+    if action == 'increase':
+        cart.add(product=get_object_or_404(Product, id=product_id))
+    elif action == 'decrease':
+        cart.remove(product=get_object_or_404(Product, id=product_id))
+    
+    return redirect('cart_summary')
+
+
+def cart_delete(request):
+    cart = Cart(request)
+    product_id = request.POST.get('product_id')
+    cart.delete(product_id)
+    return redirect('cart_summary')
