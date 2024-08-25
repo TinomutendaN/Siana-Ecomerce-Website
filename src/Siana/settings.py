@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Load our environmental variables
-load_dotenv()
+#load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -89,22 +89,15 @@ WSGI_APPLICATION = "Siana.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": os.environ['DB_PASSWORD_YO'],
+        "HOST": "postgres.railway.internal",
+        "PORT": "5432",
+    }
 }
-
-        #"ENGINE": "django.db.backends.sqlite3",
-        #"NAME": BASE_DIR / "db.sqlite3",
-        #"ENGINE": "django.db.backends.postgresql",
-        #"NAME" : "railway",
-        #"USER" : "postgres",
-        #"PASSWORD" : "nHNDnsBWUXOzspaUtEDdnogvpNsLWtAg",
-        #"HOST" : "postgres.railway.internal",
-        #"PORT" : "5432",
-      
-    #}
-#}
 
 DATABASES = {
     'default': dj_database_url.config(
