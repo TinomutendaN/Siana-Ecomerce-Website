@@ -8,11 +8,11 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="{%url 'index'%}">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Christian Books</a></li>
-                <li><a href="#">Bibles</a></li>
-                <li><a href="#">Christian Gifts</a></li>
-                <li><a href="#">Church Supplies</a></li>
+                <li><a href="{% url 'store' %}">Shop Now</a></li>
+                <li><a href="{% url 'category' 'christian-books' %}">Christian Books</a></li>
+                <li><a href="{% url 'category' 'default-slug' %}">Bibles</a></li>
+                <li><a href="{% url 'category' 'christian-gifts' %}">Christian Gifts</a></li>
+                <li><a href="{% url 'category' 'church-supplies' %}">Church Supplies</a></li>
             </ul>
             <!-- /NAV -->
         </div>

@@ -1382,3 +1382,351 @@ def checkout(request):
             </ul>
         </div>
     </div>
+STORE SHOP filter
+
+<div class="store-filter clearfix">
+    <div class="store-sort">
+        <label>
+            Sort By:
+            <select class="input-select">
+                <option value="0">Popular</option>
+                <option value="1">Position</option>
+            </select>
+        </label>
+
+        <label>
+            Show:
+            <select class="input-select">
+                <option value="0">20</option>
+                <option value="1">50</option>
+            </select>
+        </label>
+    </div>
+    <ul class="store-grid">
+        <li class="active"><i class="fa fa-th"></i></li>
+        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+    </ul>
+</div>
+
+
+
+Reviews
+<div id="tab3" class="tab-pane fade in">
+    <div class="row">
+        <!-- Rating -->
+        <div class="col-md-3">
+            <div id="rating">
+                <div class="rating-avg">
+                    <span>4.5</span>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </div>
+                <ul class="rating">
+                    <li>
+                        <div class="rating-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="rating-progress">
+                            <div style="width: 80%;"></div>
+                        </div>
+                        <span class="sum">3</span>
+                    </li>
+                    <li>
+                        <div class="rating-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                            <div style="width: 60%;"></div>
+                        </div>
+                        <span class="sum">2</span>
+                    </li>
+                    <li>
+                        <div class="rating-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                            <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                    </li>
+                    <li>
+                        <div class="rating-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                            <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                    </li>
+                    <li>
+                        <div class="rating-stars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                            <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Rating -->
+
+        <!-- Reviews -->
+        <div class="col-md-6">
+            <div id="reviews">
+                <ul class="reviews">
+                    <li>
+                        <div class="review-heading">
+                            <h5 class="name">John</h5>
+                            <p class="date">27 DEC 2018, 8:0 PM</p>
+                            <div class="review-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="review-heading">
+                            <h5 class="name">John</h5>
+                            <p class="date">27 DEC 2018, 8:0 PM</p>
+                            <div class="review-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="review-heading">
+                            <h5 class="name">John</h5>
+                            <p class="date">27 DEC 2018, 8:0 PM</p>
+                            <div class="review-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>{{product.description}}</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="reviews-pagination">
+                    <li class="active">1</li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Reviews -->
+
+        <!-- Review Form -->
+        <div class="col-md-3">
+            <div id="review-form">
+                <form class="review-form">
+                    <input class="input" type="text" placeholder="Your Name">
+                    <input class="input" type="email" placeholder="Your Email">
+                    <textarea class="input" placeholder="Your Review"></textarea>
+                    <div class="input-rating">
+                        <span>Your Rating: </span>
+                        <div class="stars">
+                            <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                            <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                            <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                            <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                            <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                        </div>
+                    </div>
+                    <button class="primary-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- /Review Form -->
+    </div>
+</div>
+<!-- /tab3  -->
+
+
+
+Reviews
+<div>
+    <div class="product-rating">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-o"></i>
+    </div>
+    <a class="review-link" href="#">10 Review(s) | Add your review</a>
+</div>
+
+
+<button class="add-to-wishlist" data-product-id="{{ product.id }}">
+    <i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+</button>
+<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+
+button class="add-to-wishlist" data-product-id="{{ product.id }}">
+														<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
+													</button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+
+
+
+
+                                                    product page 
+                                                    <ul class="product-links">
+                                                        <li>Share:</li>
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                                    </ul>
+
+
+
+
+
+                                                    {% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Your Wishlist</h2>
+
+    {% if wishlist_items %}
+        <div class="row">
+            {% for item in wishlist_items %}
+                <div class="col-md-4">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        </div>
+                        <div class="product-body">
+                            <p class="product-category">{{ item.product.category.name }}</p>
+                            <h3 class="product-name"><a href="{% url 'product' item.product.id %}">{{ item.product.name }}</a></h3>
+                            <h4 class="product-price">${{ item.product.sale_price }} <del class="product-old-price">${{ item.product.price }}</del></h4>
+                            <div class="product-rating">
+                                <!-- Assuming you have a rating system -->
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-btns">
+                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Already in wishlist</span></button>
+                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                <button class="quick-view" onclick="window.location.href='{% url 'product' item.product.id %}';">
+                                    <i class="fa fa-eye"></i>
+                                    <span class="tooltipp">quick view</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <form action="{% url 'cart_add' %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Your wishlist is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'product')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
+    
+
+class WishlistItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wishlist_items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='wishlisted_by')
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'product')
+
+    def __str__(self):
+        return f"{self.product.name} in {self.user.username}'s wishlist"
+
+
+        path('add-to-wishlist/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),
+            path('wishlist/', views.wishlist, name='wishlist'),
+
+
+            def add_to_wishlist(request, product_id):
+    if request.user.is_authenticated:
+        product = get_object_or_404(Product, id=product_id)
+        wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+        if created:
+            return JsonResponse({'status': 'added', 'wishlist_count': Wishlist.objects.filter(user=request.user).count()})
+        else:
+            return JsonResponse({'status': 'exists', 'wishlist_count': Wishlist.objects.filter(user=request.user).count()})
+    else:
+        return JsonResponse({'status': 'not_authenticated'})
+    
+
+def wishlist(request):
+    if request.user.is_authenticated:
+        wishlist_items = Wishlist.objects.filter(user=request.user)
+    else:
+        wishlist_items = []
+
+    return render(request, 'wishlist.html', {
+        'wishlist_items': wishlist_items
+    }) 

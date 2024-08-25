@@ -1,10 +1,9 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
-from store.models import Product  # Assuming you have a Product model in your cart app
+from store.models import Product  # Assuming you have a Product model in your store app
 
 class ShippingAddress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     address1 = models.CharField(max_length=200)
@@ -12,11 +11,11 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(max_length=200, null=False)
-    telephone = models.CharField(max_length=15, default='Not Provided') 
+    telephone = models.CharField(max_length=15, default='Not Provided')
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "Shipping Address"
+        verbose_name_plural = "Shipping Addresses"
 
     def __str__(self):
         return f'Shipping Address - {str(self.id)}'
@@ -38,3 +37,15 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.id} by {self.first_name} {self.last_name}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'{self.quantity} x {self.product.name}'
+
+    def get_total(self):
+        return self.price * self.quantity

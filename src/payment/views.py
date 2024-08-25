@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import ShippingForm
-from .models import ShippingAddress, Order
-from cart.cart import Cart  # Ensure the cart is imported
+from .models import ShippingAddress, Order, OrderItem
+from cart.cart import Cart
+from django.contrib.auth.decorators import login_required  # Ensure the cart is imported
 
+@login_required
 def checkout(request):
     cart = Cart(request)  # Create a cart instance
     total_price = cart.get_total_price()  # Calculate total price from the cart
@@ -37,8 +39,17 @@ def checkout(request):
             )
             order.save()
 
+            # Create OrderItem instances for each item in the cart
+            for item in cart:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item['product'],
+                    quantity=item['quantity'],
+                    price=item['total_price'] / item['quantity']  # Calculate the price per item
+                )
+
             # Clear the cart
-            request.session.pop('session_key', None)
+            cart.clear()  # This clears the cart using the newly added method
 
             # Redirect to payment success page after order creation
             return redirect('payment_success')

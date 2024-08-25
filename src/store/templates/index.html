@@ -72,14 +72,16 @@
 							<h3 class="title">New Products</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Christian Books</a></li>
-									<li><a data-toggle="tab" href="#tab1">Bibles</a></li>
-									<li><a data-toggle="tab" href="#tab1">Christian Gifts</a></li>
-									<li><a data-toggle="tab" href="#tab1">Church Supplies</a></li>
+									<li class=""><a href="{% url 'category' 'christian-books' %}">Christian Books</a></li>
+									<li><a href="{% url 'category' 'default-slug' %}">Bibles</a></li>
+									<li><a href="{% url 'category' 'christian-gifts' %}">Christian Gifts</a></li>
+									<li><a href="{% url 'category' 'church-supplies' %}">Church Supplies</a></li>
+
 								</ul>
 							</div>
 						</div>
 					</div>
+					
 					<!-- /section title -->
 
 
@@ -100,8 +102,7 @@
 												<div class="product-img">
 													<img src="{{ product.image.url}}" alt="">
 													<div class="product-label">
-														<span class="sale">-30%</span>
-														<span class="new">NEW</span>
+														<span class="sale">SALE</span>
 													</div>
 												</div>
 												<div class="product-body">
@@ -116,8 +117,7 @@
 														<i class="fa fa-star"></i>
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														
 														<button class="quick-view" onclick="window.location.href='{% url 'product' product.id %}';">
 															<i class="fa fa-eye"></i>
 															<span class="tooltipp">quick view</span>
@@ -153,8 +153,7 @@
 													<i class="fa fa-star"></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													
 													<button class="quick-view" onclick="window.location.href='{% url 'product' product.id %}';">
 														<i class="fa fa-eye"></i>
 														<span class="tooltipp">quick view</span>
@@ -210,10 +209,11 @@
 							<h3 class="title">Top selling</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab2">Christian Books</a></li>
-									<li><a data-toggle="tab" href="#tab2">Bibles</a></li>
-									<li><a data-toggle="tab" href="#tab2">Christian Gifts</a></li>
-									<li><a data-toggle="tab" href="#tab2">Church Supplies</a></li>
+									<li class=""><a href="{% url 'category' 'christian-books' %}">Christian Books</a></li>
+									<li><a href="{% url 'category' 'default-slug' %}">Bibles</a></li>
+									<li><a href="{% url 'category' 'christian-gifts' %}">Christian Gifts</a></li>
+									<li><a href="{% url 'category' 'church-supplies' %}">Church Supplies</a></li>
+
 								</ul>
 							</div>
 						</div>
@@ -234,8 +234,8 @@
 												<div class="product-img">
 													<img src={{product.image.url}} alt="">
 													<div class="product-label">
-														<span class="sale">-30%</span>
-														<span class="new">NEW</span>
+														<span class="sale">SALE</span>
+														
 													</div>
 												</div>
 												<div class="product-body">
@@ -250,8 +250,7 @@
 														<i class="fa fa-star"></i>
 													</div>
 													<div class="product-btns">
-														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														
 														<button class="quick-view" onclick="window.location.href='{% url 'product' product.id %}';">
 															<i class="fa fa-eye"></i>
 															<span class="tooltipp">quick view</span>
@@ -286,8 +285,7 @@
 													<i class="fa fa-star"></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													
 													<button class="quick-view" onclick="window.location.href='{% url 'product' product.id %}';">
 														<i class="fa fa-eye"></i>
 														<span class="tooltipp">quick view</span>

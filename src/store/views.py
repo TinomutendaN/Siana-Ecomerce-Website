@@ -9,7 +9,8 @@ from .forms import SignUpForm
 from django import forms 
 import random
 from django.core.paginator import Paginator
-
+from django.db.models import Count
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -74,32 +75,33 @@ def product(request, pk):
 
 
 def category(request, foo):
-    # Replace hyphens with spaces to match category names in the database
-    foo = foo.replace('-', ' ')
-    
     try:
-        # Look up the category
-        category = Category.objects.get(name=foo)
+        # Look up the category using the slug
+        category = Category.objects.get(slug=foo)
         products = Product.objects.filter(category=category)
         return render(request, 'category.html', {'products': products, 'category': category})
-    
     except Category.DoesNotExist:
         return redirect('index')  # Redirect to the homepage if the category doesn't exist
 
+
 def store(request, category_slug=None):
     # Annotate categories with the count of products in each category
-    categories = Category.objects.annotate(product_count=models.Count('product'))
-    # Get all products
+    categories = Category.objects.annotate(product_count=Count('product'))
+    
+    # Get the selected category IDs from the GET parameters
+    selected_categories = request.GET.getlist('category')
+    
+    # Start with all products
     products = Product.objects.all()
 
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
-    
-    # Set up pagination: 12 products per page (or adjust to fit nicely on your page)
+    if selected_categories:
+        # Filter products by the selected categories
+        products = products.filter(category__id__in=selected_categories)
+
+    # Set up pagination: 12 products per page
     paginator = Paginator(products, 12)
-    page_number = request.GET.get('page')  # Get the page number from the query string
-    page_obj = paginator.get_page(page_number)  # Get the products for the current page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
     # Fetch all products that are on sale
     on_sale_products = Product.objects.filter(is_sale=True)
@@ -109,13 +111,18 @@ def store(request, category_slug=None):
     
     return render(request, 'store.html', {
         'categories': categories,
-        'products': products,
         'top_selling_products': top_selling_products,
         'page_obj': page_obj,
-        'category': category if category_slug else None
-
+        'selected_categories': selected_categories,
     })
 
-
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+    
+    return render(request, "search.html", {'products': products})
 
 

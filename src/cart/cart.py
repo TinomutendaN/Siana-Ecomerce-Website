@@ -71,5 +71,10 @@ class Cart():
             del self.cart[product_id]
             self.save()
 
+    def clear(self):
+        """Clears all items from the cart."""
+        self.cart.clear()
+        self.save()
+
     def save(self):
         self.session.modified = True
