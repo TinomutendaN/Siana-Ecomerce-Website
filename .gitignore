@@ -1,3 +1,4 @@
+src/.env
 # ignore vendor static files
 src/staticfiles/vendors
 
