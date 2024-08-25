@@ -88,20 +88,21 @@ WSGI_APPLICATION = "Siana.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "railway",
-        "USER": "postgres",
-        "PASSWORD": os.environ['DB_PASSWORD_YO'],
-        "HOST": "postgres.railway.internal",
-        "PORT": "5432",
-    }
-}
+#DATABASES = {
+    #"default": {
+        #"ENGINE": "django.db.backends.postgresql",
+        #"NAME": "railway",
+        #"USER": "postgres",
+        #"PASSWORD": os.environ['DB_PASSWORD_YO'],
+        #"HOST": "postgres.railway.internal",
+        #"PORT": "5432",
+    #}
+#}
+
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default=os.environ['DATABASE_URL']
     )
 }
 
