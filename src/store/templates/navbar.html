@@ -1,70 +1,62 @@
+<style>
+    /* Container for the navigation */
+    .nav-wrapper {
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: #f8f8f8;
+        padding: 10px 0;
+    }
 
-    <style>
-        /* Container for the navigation */
-        .nav-wrapper {
-            position: relative;
-            overflow: hidden;
-            white-space: nowrap;
-            background-color: #f8f8f8; /* Background color for the nav bar */
-            padding: 10px 0; /* Padding for top and bottom */
-        }
+    /* Styling for the scrollable navigation */
+    .scrollable-nav {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        scroll-behavior: smooth;
+    }
 
-        /* Styling for the scrollable navigation */
-        .scrollable-nav {
-            display: inline-block;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 0;
-            margin: 0;
-            list-style: none; /* Remove bullet points */
-        }
+    .scrollable-nav li {
+        flex: 0 0 auto;
+        margin: 0 10px;
+    }
 
-        .scrollable-nav li {
-            display: inline-block;
-            margin: 0 10px; /* Space between items */
-        }
+    .scrollable-nav a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        padding: 5px 10px;
+    }
 
-        .scrollable-nav a {
-            text-decoration: none;
-            color: #333; /* Text color */
-            font-size: 16px;
-            padding: 5px 10px;
-        }
+    /* Styling for the arrows */
+    .nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Styling for the arrows */
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #fff; /* Background color for arrows */
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 50%; /* Make the arrows circular */
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Light shadow for the arrows */
-        }
+    .left-arrow {
+        left: 0;
+    }
 
-        .left-arrow {
-            left: 0;
-        }
-
-        .right-arrow {
-            right: 0;
-        }
-    </style>
-
-    
-
-
-
+    .right-arrow {
+        right: 0;
+    }
+</style>
 
 <!-- NAVIGATION -->
 <nav id="navigation">
-    <!-- container -->
     <div class="container">
-        <!-- responsive-nav -->
         <div id="responsive-nav">
-            <!-- Scrollable Container -->
             <div class="nav-wrapper">
                 <!-- Left Arrow -->
                 <div class="nav-arrow left-arrow" onclick="scrollNav('left')">
@@ -72,7 +64,7 @@
                 </div>
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav scrollable-nav">
-                    <li class="active"><a href="{%url 'index'%}">Home</a></li>
+                    <li class="active"><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'store' %}">Shop Now</a></li>
                     <li><a href="{% url 'category' 'christian-books' %}">Devotional and Journals</a></li>
                     <li><a href="{% url 'category' 'default-slug' %}">Bibles, Bible Covers and Study Materials</a></li>
@@ -88,21 +80,24 @@
                     <i class="fa fa-chevron-right"></i>
                 </div>
             </div>
-            <!-- /NAV -->
         </div>
-        <!-- /responsive-nav -->
     </div>
-    <!-- /container -->
 </nav>
-
 <!-- /NAVIGATION -->
+
 <script>
     function scrollNav(direction) {
         const nav = document.querySelector('.scrollable-nav');
+        const scrollAmount = 200; // Adjust this value as needed
         if (direction === 'left') {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
+            nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         } else if (direction === 'right') {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
+            nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     }
+
+    // Auto scroll functionality (optional)
+    setInterval(() => {
+        scrollNav('right');
+    }, 3000); // Adjust time as needed
 </script>
