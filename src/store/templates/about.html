@@ -1,24 +1,120 @@
 {% extends 'base.html' %}
 {% load static  %}
 {% block content %}
-<div class="container">
-    <h1>About Siana Christian Store</h1>
-    <p>Siana Christian store offers a wide range of Christian gifts for everyone and every occasion. It is committed to diligently bringing the best Christian products to the Southern African region at affordable prices. The mission is to continue advancing in this region, ensuring that believers have the necessary resources to grow in their faith and become beacons of God's love and grace.</p>
-    <p>Our Goal is also to bring many souls to the kingdom of God through our products and services as well as to strengthen relationships through our gifts.</p>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .hero {
+        background-image: url('path-to-your-image.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    .hero h1 {
+        margin: 0;
+        font-size: 3em;
+    }
+    .hero p {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+    .content {
+        margin-top: 40px;
+    }
+    .content h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .content p {
+        margin-bottom: 20px;
+    }
+    .team-section {
+        margin-top: 40px;
+    }
+    .team-section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .team-profiles {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .profile {
+        text-align: center;
+        width: 30%;
+        margin-bottom: 20px;
+    }
+    .profile img {
+        width: 100%;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .profile h3 {
+        font-size: 1.5em;
+        margin: 10px 0;
+    }
+    .profile p {
+        font-size: 1em;
+        color: #777;
+    }
+</style>
 
-    <h2>Categories</h2>
-    <ul>
-        <li>Babies Gifts</li>
-        <li>Bibles and study materials</li>
-        <li>Bible covers</li>
-        <li>Devotional and Journals</li>
-        <li>Fashion Accessories</li>
-        <li>Gadgets</li>
-        <li>Gift Sets - Birthday gifts / Christmas gifts / Love gifts</li>
-        <li>Home Décor</li>
-        <li>Kids’ Books</li>
-        <li>Movies</li>
-        <li>Mugs, Water Bottle and Kitchenware</li>
-    </ul>
+<div class="hero">
+    <h1>About Masho</h1>
+    <p>Crafting timeless leather goods with integrity and care.</p>
 </div>
+
+<div class="container">
+    <div class="content">
+        <h2>Our Story</h2>
+        <p>Mashiri was founded with a simple mission: to create high-quality leather goods that stand the test of time. We believe in the power of simplicity, functionality, and exceptional craftsmanship. Our products are made from the finest materials, carefully selected to ensure durability and longevity.</p>
+        
+        <p>We started with a passion for leather and a desire to create something that would last. Today, WP Standard is known for its commitment to quality, with each piece designed to age beautifully and tell its own unique story. We are proud of the products we create and the relationships we build with our customers, who share our appreciation for timeless design and craftsmanship.</p>
+
+        <h2>Our Philosophy</h2>
+        <p>At MASHIRI, we believe that less is more. We focus on creating products that are functional, durable, and beautiful in their simplicity. Our design process is centered around the idea that every product should serve a purpose and be built to last.</p>
+        
+        <p>We are committed to ethical practices in every step of our process, from sourcing materials to manufacturing. Our leather is sourced from reputable tanneries that prioritize sustainability and environmental responsibility. We work with skilled artisans who share our dedication to quality, ensuring that each product is made with care and attention to detail.</p>
+    </div>
+
+    <div class="team-section">
+        <h2>Meet the Team</h2>
+        <div class="team-profiles">
+            <div class="profile">
+                <img src="path-to-your-image.jpg" alt="Founder">
+                <h3>John Doe</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="profile">
+                <img src="path-to-your-image.jpg" alt="Designer">
+                <h3>Jane Smith</h3>
+                <p>Lead Designer</p>
+            </div>
+            <div class="profile">
+                <img src="path-to-your-image.jpg" alt="Craftsman">
+                <h3>David Brown</h3>
+                <p>Master Craftsman</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 {% endblock %}
