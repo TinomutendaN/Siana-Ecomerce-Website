@@ -79,9 +79,6 @@
 								<form method="GET" action="{% url 'search' %}" style="display: flex; width: 100%;">
 									<select class="input-select" style="flex: 1; margin-left: 0; margin-right: 0;" onchange="if(this.value != '0') { window.location.href = '/category/' + this.value.replace(/ /g, '-'); }">
 										<option value="0">All Categories</option>
-										{% for category in categories %}
-											<option value="{{ category.name }}">{{ category.name }}</option>
-										{% endfor %}
 									</select>
 									<input class="input" name="q" placeholder="Search here" style="flex: 2; margin-left: 0; margin-right: 0;">
 									<button type="submit" class="search-btn" style="flex: 0 0 auto; margin-left: 0; white-space: nowrap;">Search</button>
