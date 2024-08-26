@@ -1,69 +1,13 @@
-<style>
-    /* Container for the navigation */
-    .nav-wrapper {
-        position: relative;
-        overflow: hidden;
-        white-space: nowrap;
-        background-color: #f8f8f8;
-        padding: 10px 0;
-    }
 
-    /* Styling for the scrollable navigation */
-    .scrollable-nav {
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        scroll-behavior: smooth;
-    }
-
-    .scrollable-nav li {
-        flex: 0 0 auto;
-        margin: 0 10px;
-    }
-
-    .scrollable-nav a {
-        text-decoration: none;
-        color: #333;
-        font-size: 16px;
-        padding: 5px 10px;
-    }
-
-    /* Styling for the arrows */
-    .nav-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #fff;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 10;
-        border-radius: 50%;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .left-arrow {
-        left: 0;
-    }
-
-    .right-arrow {
-        right: 0;
-    }
-</style>
 
 <!-- NAVIGATION -->
 <nav id="navigation">
+    <!-- container -->
     <div class="container">
+        <!-- responsive-nav -->
         <div id="responsive-nav">
-            <div class="nav-wrapper">
-                <!-- Left Arrow -->
-                <div class="nav-arrow left-arrow" onclick="scrollNav('left')">
-                    <i class="fa fa-chevron-left"></i>
-                </div>
                 <!-- NAV -->
-                <ul class="main-nav nav navbar-nav scrollable-nav">
+                <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'store' %}">Shop Now</a></li>
                     <li><a href="{% url 'category' 'christian-books' %}">Devotional and Journals</a></li>
@@ -75,24 +19,8 @@
                     <li><a href="{% url 'category' 'home-decor' %}">Home Decor</a></li>
                     <li><a href="{% url 'category' 'mugs-bottles' %}">Mugs, Water Bottle and Kitchenware</a></li>
                 </ul>
-                <!-- Right Arrow -->
-                <div class="nav-arrow right-arrow" onclick="scrollNav('right')">
-                    <i class="fa fa-chevron-right"></i>
-                </div>
-            </div>
+                <!-- Right Arrow -->            
         </div>
     </div>
 </nav>
 <!-- /NAVIGATION -->
-
-<script>
-    function scrollNav(direction) {
-        const nav = document.querySelector('.scrollable-nav');
-        const scrollAmount = nav.clientWidth * 0.7; // Scroll by 70% of the visible width
-        if (direction === 'left') {
-            nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else if (direction === 'right') {
-            nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    }
-</script>
