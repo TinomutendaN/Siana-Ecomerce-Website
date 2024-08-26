@@ -88,7 +88,7 @@
 <script>
     function scrollNav(direction) {
         const nav = document.querySelector('.scrollable-nav');
-        const scrollAmount = 200; // Adjust this value as needed
+        const scrollAmount = nav.clientWidth * 0.7; // Scroll by 70% of the visible width
         if (direction === 'left') {
             nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         } else if (direction === 'right') {
@@ -97,7 +97,13 @@
     }
 
     // Auto scroll functionality (optional)
-    setInterval(() => {
+    let autoScrollInterval = setInterval(() => {
         scrollNav('right');
     }, 3000); // Adjust time as needed
+
+    // Stop auto scroll when user interacts with the nav
+    const nav = document.querySelector('.scrollable-nav');
+    nav.addEventListener('mousedown', () => {
+        clearInterval(autoScrollInterval);
+    });
 </script>
