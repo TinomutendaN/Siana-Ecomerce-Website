@@ -126,3 +126,5 @@ def search(request):
     return render(request, "search.html", {'products': products})
 
 
+def about(request):
+    return render(request, 'about.html')
