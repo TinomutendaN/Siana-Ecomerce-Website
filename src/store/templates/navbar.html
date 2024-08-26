@@ -95,15 +95,4 @@
             nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     }
-
-    // Auto scroll functionality (optional)
-    let autoScrollInterval = setInterval(() => {
-        scrollNav('right');
-    }, 3000); // Adjust time as needed
-
-    // Stop auto scroll when user interacts with the nav
-    const nav = document.querySelector('.scrollable-nav');
-    nav.addEventListener('mousedown', () => {
-        clearInterval(autoScrollInterval);
-    });
 </script>
