@@ -1730,3 +1730,33 @@ def wishlist(request):
     return render(request, 'wishlist.html', {
         'wishlist_items': wishlist_items
     }) 
+
+
+
+
+    
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+                <!-- NAV -->
+                <ul class="main-nav nav navbar-nav">
+                    <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'store' %}">Shop Now</a></li>
+                    <li><a href="{% url 'category' 'christian-books' %}">Devotional and Journals</a></li>
+                    <li><a href="{% url 'category' 'default-slug' %}">Bibles, Bible Covers and Study Materials</a></li>
+                    <li><a href="{% url 'category' 'christian-gifts' %}">Gifts Sets</a></li>
+                    <li><a href="{% url 'category' 'church-supplies' %}">Books and Movies</a></li>
+                    <li><a href="{% url 'category' 'clothes-fashion' %}">Clothing and Fashion Accessories</a></li>
+                    <li><a href="{% url 'category' 'gad-gets' %}">Gadgets</a></li>
+                    <li><a href="{% url 'category' 'home-decor' %}">Home Decor</a></li>
+                    <li><a href="{% url 'category' 'mugs-bottles' %}">Mugs, Water Bottle and Kitchenware</a></li>
+                </ul>
+                <!-- Right Arrow -->            
+        </div>
+    </div>
+</nav>
+<!-- /NAVIGATION -->
